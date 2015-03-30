@@ -1,0 +1,83 @@
+<?php 
+if(isset($data['usuario']))
+	$usuario=$data['usuario'];
+?>
+<form method="post" enctype="multipart/form-data">
+	<ul>
+		<li>
+			Id: <input type="hidden" name="iduser" value="<?=isset($usuario['iduser'])?$usuario['iduser']:'';?>"/>
+		</li>
+		<li>
+			Nombre de Usuario: <input type="text" name="username" value="<?=isset($usuario['username'])?$usuario['username']:'';?>"/>
+		</li>
+		<li>
+			Nombre: <input type="text" name="name" value="<?=isset($usuario['name'])?$usuario['name']:'';?>"/>
+		</li>
+		<li>
+			Apellidos: <input type="text" name="lastname" value="<?=isset($usuario['lastname'])?$usuario['lastname']:'';?>"/>
+		</li>
+		<li>
+			Email: <input type="text" name="email" value="<?=isset($usuario['email'])?$usuario['email']:'';?>"/>
+		</li>
+		<li>
+			Password: <input type="password"  name="password"/>
+		</li>
+		<li>
+			Descripcion: <textarea rows="10" cols="10" name="description"><?=isset($usuario['description'])?$usuario['description']:'';?></textarea>
+		</li>
+		<li>
+			Ciudad: <select name="cities_idcity">
+			<option value="1" <?=(isset($usuario['cities_idcity'])&&$usuario['cities_idcity']=='mordor')?'selected':'';?>>Mordor</option>
+			<option value="2" <?=(isset($usuario['cities_idcity'])&&$usuario['cities_idcity']=='sanandreas')?'selected':'';?>>San Andreas</option>
+			<option value="3" <?=(isset($usuario['cities_idcity'])&&$usuario['cities_idcity']=='estrella')?'selected':'';?>>Estrella de la Muerte</option>
+			</select>
+		</li>
+		
+		<li>
+			Sexo: 
+			Otros: <input type="radio" value="1" name="genders_idgender" <?=(isset($usuario['genders_idgender'])&&$usuario['genders_idgender']=='o')?'checked':'';?>/>
+			Machoman: <input type="radio" value="2" name="genders_idgender" <?=(isset($usuario['genders_idgender'])&&$usuario['genders_idgender']=='m')?'checked':'';?>/>
+			Amazona: <input type="radio" value="3" name="genders_idgender" <?=(isset($usuario['genders_idgender'])&&$usuario['genders_idgender']=='a')?'checked':'';?>/>
+			Doppelganger: <input type="radio" value="4" name="genders_idgender" <?=(isset($usuario['genders_idgender'])&&$usuario['genders_idgender']=='d')?'checked':'';?>/>
+			Mucho: <input type="radio" value="5" name="genders_idgender" <?=(isset($usuario['genders_idgender'])&&$usuario['genders_idgender']=='x')?'checked':'';?>/>
+		</li>
+		<li>
+			Mascotas: 
+			SpiderCerdo <input type="checkbox" value="spidercerdo" name="pets[]" <?=(isset($usuario['pets'])&&in_array('spidercerdo', $usuario['pets']))?'checked':'';?>/>
+			Wookie <input type="checkbox" value="wookie" name="pets[]" <?=(isset($usuario['pets'])&&in_array('wookie', $usuario['pets']))?'checked':'';?>/>
+			Orco <input type="checkbox" value="orco" name="pets[]" <?=(isset($usuario['pets'])&&in_array('orco', $usuario['pets']))?'checked':'';?>/>
+			Dalek <input type="checkbox" value="dalek" name="pets[]" <?=(isset($usuario['pets'])&&in_array('dalek', $usuario['pets']))?'checked':'';?>/>
+		</li>
+		<li>
+			Idiomas: 
+			<select multiple name="languages[]">
+				<option value="kenya" <?=(isset($usuario['languages'])&&in_array('kenya', $usuario['languages']))?'selected':'';?>>Kenya</option>
+				<option value="maquina" <?=(isset($usuario['languages'])&&in_array('maquina', $usuario['languages']))?'selected':'';?>>Maquina</option>
+				<option value="ensamblador" <?=(isset($usuario['languages'])&&in_array('ensamblador', $usuario['languages']))?'selected':'';?>>Ensamblador</option>
+				<option value="enigma" <?=(isset($usuario['languages'])&&in_array('enigma', $usuario['languages']))?'selected':'';?>>Codigo Enigma</option>
+				<option value="eructo" <?=(isset($usuario['languages'])&&in_array('eructo', $usuario['languages']))?'selected':'';?>>Eructo</option>
+			</select>
+		</li>
+		<li>
+			Foto: <input type="file" name="photo"/>
+			<?php 
+			if(isset($usuario['photo']))
+			{
+				echo "<img width=\"100px\" src=\"".$usuario['photo']."\"/>";
+				echo "<input type=\"hidden\" name=\"photo\" value=\"".$usuario['photo']."\"/>";	
+			}
+			?>
+		</li>
+		
+		<li>
+			Enviar: <input type="submit" name="submit"/>
+		</li>
+		<li>
+			Reset: <input type="reset" name="reset"/>
+		</li>
+		<li>
+			Button: <input type="button" name="button" value="Un boton"/>
+		</li>
+	
+	</ul>
+</form>
